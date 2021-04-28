@@ -1,24 +1,15 @@
-import { useState } from 'react';
-import { Button, Modal } from 'antd'; 
+
+import { Button } from 'antd'; 
+import { useModalContext } from "./modal.context";
 
 function Home() {
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    const { openModal } = useModalContext();
 
-    const showModal = () => {
-        setIsModalVisible(true);
-    }
-
-    const closeModal = () => {
-        setIsModalVisible(false);
-    }
+    const showModal = () => openModal({message: "Fluminense será o campeão 2022!"});
 
     return (
         <>
             <Button type="primary" onClick={showModal}>Open Modal</Button>
-
-            <Modal title="Fluminense" visible={isModalVisible} onOk={closeModal} onCancel={closeModal}>
-                <p>O bom torcedor, torce pelo Fluminense</p>
-            </Modal>
         </>
     )
 }
